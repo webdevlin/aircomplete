@@ -5,7 +5,6 @@
 }
 .aircomplete {
     position: relative;
-    z-index: 1000;
 }
 .aircomplete-list {
     position: absolute;
@@ -24,10 +23,12 @@
     border-top-right-radius: 0;
     overflow: hidden;
     box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.5);
+    z-index:2;
 }
 .aircomplete-list-item {
     padding: 15px;
     border-bottom: solid 1px #ddd;
+    cursor:pointer;
 }
 .aircomplete-list-item img {
     filter: grayscale(100%);

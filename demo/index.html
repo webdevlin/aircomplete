@@ -8,25 +8,32 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
     <script src="/src/jquery.aircomplete.js" type="text/javascript"></script>
     <!-- <script src="/js/new-boilerplate.js" type="text/javascript"></script> -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
 
     <div class="container">
-
+        <h1>aircomplete</h1>
         <div class="example">
             <h3>Basic Example</h3>
-            <p>Start typing a planet name</p>
-            <input aircomplete-basic />
+            <label for="basic-example">Start typing a planet name</label>
+            <input type="text" id="basic-example"/>
 
             <script type="text/javascript">
             $(function() {
-                $("[aircomplete-basic]").aircomplete({
-                    data                  : [
-                        "Mercury", "Vulcan", "Venus", "Earth",
-                        "Counter-Earth", "Mars", "Ceres", "Jupiter",
-                        "Saturn", "Uranus", "Neptune", "Pluto",
-                        "Planet X", "Nibiru"
+                $("#basic-example").aircomplete({
+                    data: [
+                        "Mercury",  "Vulcan", 
+                        "Venus",    "Earth",
+                        "Mars",     "Counter-Earth",
+                        "Ceres",    "Jupiter",
+                        "Saturn",   "Uranus", 
+                        "Neptune",  "Planet X",
+                        "Pluto",    "Nibiru"
                     ],
+                    onSelect: function(data){
+                        return data;
+                    },
                     minSearchStringLength : 1// show results after a single character is entered
                 });
             });
@@ -36,11 +43,11 @@
         <div class="example">
             <h3>Basic Example with AJAX</h3>
             <p>Start typing a planet name</p>
-            <input aircomplete-ajax />
+            <input data-aircomplete-ajax />
 
             <script type="text/javascript">
             $(function() {
-                $("[aircomplete-ajax]").aircomplete({
+                $("[data-aircomplete-ajax]").aircomplete({
                     ajaxOptions: {
                         url:      'planets.php?searchTerm={{searchTerm}}',
                         dataType: 'json', // or jsonp
@@ -71,11 +78,11 @@
         <div class="example">
             <h3>Basic Example with AJAX and local matching</h3>
             <p>Start typing a STAR WARS planet name</p>
-            <input aircomplete-ajax-local-match />
+            <input data-aircomplete-ajax-local-match />
 
             <script type="text/javascript">
             $(function() {
-                $("[aircomplete-ajax-local-match]").aircomplete({
+                $("[data-aircomplete-ajax-local-match]").aircomplete({
                     ajaxOptions: {
                         url:      'https://swapi.co/api/planets',
                         dataType: 'json', // or jsonp
@@ -104,7 +111,7 @@
         <div class="example">
             <h3>Data as a Function Example</h3>
             <p>Start typing a planet name</p>
-            <input aircomplete-function />
+            <input data-aircomplete-function />
 
             <script type="text/javascript">
             var planetoids = {};
@@ -127,7 +134,7 @@
             };
 
             $(function() {
-                $("[aircomplete-function]").aircomplete({
+                $("[data-aircomplete-function]").aircomplete({
                     data                  : planetoids.getThemPlanets,
                     match: function(dataRow, searchTerm) {
                         return dataRow.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
@@ -149,11 +156,11 @@
             <p>Start typing a planet name</p>
             <form>
 
-                <input aircomplete-google />
+                <input data-aircomplete-google />
                 
                 <script type="text/javascript">
                 $(function() {
-                    var googleAircomplete = $("[aircomplete-google]").aircomplete({
+                    var googleAircomplete = $("[data-aircomplete-google]").aircomplete({
                         data                  : [
                             {name: "Ceres"},
                             {name: "Counter-Earth"},
@@ -194,14 +201,14 @@
                         alert('form submit');
                     });
 
-                    $("a[aircomplete-destroy]").on('click', function() {
+                    $("a[data-aircomplete-destroy]").on('click', function() {
                         googleAircomplete.aircomplete('destroy');
                         return false;
                     });
                 });
                 </script>
             </form>
-            <a href="#" aircomplete-destroy>Destroy Aircomplete</a>
+            <a href="javascript:void(0)" data-aircomplete-destroy>Destroy Aircomplete</a>
         </div>
 
     </div>
