@@ -9,6 +9,7 @@
 ;
 (function($, window, document, undefined) {
 
+
     // undefined is used here as the undefined global
     // variable in ECMAScript 3 and is mutable (i.e. it can
     // be changed by someone else). undefined isn't really
@@ -29,6 +30,7 @@
         // how elements are matched against search text
         // only applies to non-ajax setup
         match: function(dataRow, searchTerm) {
+
             return dataRow.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
         },
         // how matches are formatted for the dropdown list
@@ -144,7 +146,7 @@
             // keep ref to the ul
             this._$list = this._$wrap.find("ul:first");
 
-            $(this._$list).on('click.aircomplete', this._onClick);
+            $(this._$list).on('click.aircomplete', this._onClick.bind(this));
 
             $(this.el)
                 .on('focus.aircomplete',   this._onFocus.bind(this))
@@ -399,9 +401,8 @@
         selectListItem: function() {
             this._debug('aircomplete.selectListItem()');
             if (this._state.current) {
-                var value = this.options.onSelect(
-                    this._results[this._state.current - 1]
-                );
+                var rawResult = this._results[this._state.current - 1];
+                var value = this.options.onSelect( rawResult );
 
                 if (value !== false) {
                     this.setInputValue(value);
