@@ -64,7 +64,7 @@
         // given a dataset, what is the path to the array?
         // useful when some APIs return {results: []} or {data: []}
         dataKey: '',
-        // how many milliseconds should pass after a keystroke before we 
+        // how many milliseconds should pass after a keystroke before we
         // repopulate the list
         searchDelay: 200,
         // should the plugin cache ajax requests?
@@ -244,7 +244,7 @@
             if (this._debounceTimeout) {
                 clearTimeout(this._debounceTimeout);
             }
-            
+
             this._debounceTimeout = setTimeout(func, wait);
         },
 
@@ -255,7 +255,7 @@
             if (this.options.ajaxOptions.url) {
                 this._ajaxSearch(searchTerm);
             }
-            // else on-page data set 
+            // else on-page data set
             else {
                 this._localSearch(searchTerm);
             }
@@ -271,7 +271,7 @@
 
             // if caching is enabled, check it
             if (this.options.cache) {
-                // if we have a cache entry, set the cached request 
+                // if we have a cache entry, set the cached request
                 // response to the current data set and run a local search
                 if (this._cache.hasOwnProperty(requestUrl)) {
                     this.options.data = this._cache[requestUrl];
@@ -318,7 +318,7 @@
             // populate the autocomplete dropdown list
             this._populateList(results, searchTerm);
         },
-        
+
         _normalizeData: function(rawData) {
             var data;
             if (this.options.dataKey !== '' && rawData.hasOwnProperty(this.options.dataKey)) {
@@ -354,7 +354,7 @@
                 }
                 this._$list.html(items);
                 this.showList();
-            } 
+            }
             // otherwise
             else {
                 this.emptyList();
@@ -429,7 +429,7 @@
             this._state.expanded = false;
             this._$list.hide();
         },
-        
+
         // empties the autocomplete list, resetting the plugin state
         emptyList: function() {
             this._debug('aircomplete.emptyList()');
@@ -444,7 +444,7 @@
         destroy: function() {
             // unbind events
             $(this._$list).off('click.aircomplete');
-            
+
             $(this.el)
                 .off('focus.aircomplete')
                 .off('keydown.aircomplete')
